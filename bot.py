@@ -20,7 +20,7 @@ threading.Thread(target=run_web).start()
 
 # --- Discord бот ---
 TOKEN = os.getenv("DISCORD_TOKEN")
-CHANNEL_ID = 561267967946391583
+CHANNEL_ID = 1468628687384612950
 
 intents = discord.Intents.default()
 intents.message_content = True
