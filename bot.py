@@ -1,7 +1,24 @@
 import discord
 from discord.ext import commands
 import os
+from flask import Flask
+import threading
 
+# --- Flask сервер для Render ---
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Bot is running"
+
+def run_web():
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
+
+# Запускаем Flask в отдельном потоке
+threading.Thread(target=run_web).start()
+
+# --- Discord бот ---
 TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = 561267967946391583
 
