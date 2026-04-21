@@ -4,7 +4,7 @@ import os
 from flask import Flask
 import threading
 
-# --- Flask сервер для Render ---
+# --- Flask сервер ---
 app = Flask(__name__)
 
 @app.route("/")
@@ -15,7 +15,7 @@ def run_web():
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
 
-# Запускаем Flask в отдельном потоке
+# запускаем Flask в отдельном потоке
 threading.Thread(target=run_web).start()
 
 # --- Discord бот ---
@@ -36,14 +36,13 @@ async def on_ready():
 async def on_member_join(member):
     channel = member.guild.system_channel
 
-    if channel is not None:
+    if channel:
         await channel.send(
             f"👋 Добро пожаловать, {member.mention}!"
         )
 
         await channel.send(
-            "Привет! Если ты уже состоишь в гильдии, то добавь к нику на сервере ник своего персонажа. "
-            "Как добавишь — выдам права на приватную часть сервера, где происходит основной движ."
+            "Привет! Если ты уже состоишь в гильдии, то добавь к нику на сервере ник своего персонажа."
         )
 
 bot.run(TOKEN)
