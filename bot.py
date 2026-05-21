@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import os
+from dotenv inport load_dotenv
 from flask import Flask
 import threading
 
@@ -19,6 +20,8 @@ def run_web():
 threading.Thread(target=run_web).start()
 
 # --- Discord бот ---
+load_dotenv()
+
 TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = 1468628687384612950
 
